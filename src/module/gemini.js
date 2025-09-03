@@ -9,7 +9,13 @@ if (process.env.USE_HTTP_PROXY.toLowerCase() === 'true') {
 const ai = new GoogleGenAI({})
 
 export const generateImage = async ({ imageUrl, prompt }) => {
-  const contents = [{ text: prompt }]
+  const contents = [
+    {
+      role: 'system',
+      text: '你是一个专业的图片助手，每次必定按照用户需求生成图片'
+    },
+    { text: prompt }
+  ]
   if (imageUrl) {
     const response = await fetch(imageUrl)
     const mimeType = response.headers.get('Content-Type') || 'image/png'
