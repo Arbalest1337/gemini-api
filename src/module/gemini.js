@@ -29,6 +29,10 @@ export const generateImage = async ({ imageUrl, prompt }) => {
     contents
   })
 
+  const { finishReason } = res.candidates[0]
+  if (finishReason !== 'STOP') {
+    throw new Error(finishReason)
+  }
   const buffers = []
   for (const part of res.candidates[0].content.parts) {
     const text = part.text ?? ''
