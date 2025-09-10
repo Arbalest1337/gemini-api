@@ -12,7 +12,7 @@ export const generateImage = async ({ imageUrl, prompt }) => {
   const contents = [
     {
       role: 'system',
-      text: '你是一个专业的图片助手，每次必定按照用户需求生成图片'
+      text: 'Translate the user’s input prompt into English, and based on the translated English prompt, always generate an image and return it.'
     },
     { text: prompt }
   ]
